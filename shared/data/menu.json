@@ -1,0 +1,15 @@
+{
+  "matematik": {
+    "title": "Matematik",
+    "icon": "math-function",
+    "section": "Konular",
+    "children": {
+      "cebir": { "url": "cebir.html", "title": "Cebir" },
+      "geometri": { "url": "geometri.html", "title": "Geometri" },
+      "trigonometri": { "url": "trigonometri.html", "title": "Trigonometri" },
+      "kombinatorik": { "url": "kombinatronik.html", "title": "Kombinatorik" },
+      "sayılar-teorisi" : { "url": "sayılar teorisi.html", "title": "Sayılar Teorisi" }
+    }
+  }
+ }
+  

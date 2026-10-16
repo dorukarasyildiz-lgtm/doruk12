@@ -1,0 +1,139 @@
+---
+import DefaultLayout from '@shared/layouts/DefaultLayout.astro'
+
+---
+
+<DefaultLayout title="Dashboard" pageHeader="Sayılar Teorisi" pretitle="Overview" pageMenu="layout.navbar-dark" pageLibs={['apexcharts', 'jsvectormap']} navbarDark>
+
+ <div class="card">
+    <div class="card-body">
+      <h3 class="card-title">Asal Sayılar</h3>
+      <p><b>Tanım:</b> $1$'den büyük ve yalnızca $1$'e ve kendisine bölünen sayılara <b>asal sayı</b> denir. Örneğin $2, 3, 5, 7, 11, 13$ asaldır. $1$ asal değildir; $2$ ise tek çift asal sayıdır.</p>
+      <p>Bir sayının asal olup olmadığını anlamak için kareköküne kadar olan asal bölenleri kontrol etmek yeterlidir. Örneğin $\sqrt{170} \approx 13.04$ olduğundan 170'i 2, 3, 5, 7, 11 ve 13'e böleriz. 170, 2'ye bölündüğü için asal değildir.</p>
+      <h4>Asal Sayılar Pratiği</h4>
+      <div id="asal-pratik" class="d-flex flex-column gap-3"></div>
+    </div>
+  </div>
+  <div class="card mt-3">
+    <div class="card-body">
+      <h3 class="card-title">Tek ve Çift Sayıların Toplamı ve Çarpımı</h3>
+      <p>Çift sayı 2'ye tam bölünür, tek sayı ise 2'ye tam bölünmez. Toplamada çift + çift ve tek + tek çift; tek + çift ise tek olur.</p>
+      <p>Çarpmada çarpanlardan biri çiftse sonuç çifttir. İki tek sayının çarpımı tektir. 2'den büyük her çift sayı asal değildir.</p>
+      <h4>Tek ve Çift Sayılar Pratiği</h4>
+      <div id="tek-cift-pratik" class="d-flex flex-column gap-3"></div>
+  </div>
+</div>
+<div class="card">
+    <div class="card-body">
+      <h3 class="card-title">EBOB-EKOK</h3>
+      <p><b>EBOB(a,b):</b> $a$ ve $b$ sayılarının en büyük ortak böleni. <b>EKOK(a,b):</b> $a$ ve $b$ sayılarının en küçük ortak katı.</p>
+      <h4>EBOB-EKOK Pratiği</h4>
+      <div id="ebob-ekok-pratik" class="d-flex flex-column gap-3"></div>
+    </div>
+</div>
+<div class="card">
+    <div class="card-body">
+      <h3 class="card-title">Modüler Aritmetik</h3>
+      <p><b>Modüler Aritmetik:</b> Bir sayının bir başka sayıya bölümünden kalanı ifade eder. Örneğin, $17 \mod 5 = 2$.</p>
+      <h4>Modüler Aritmetik Pratiği</h4>
+      <div id="moduler-pratik" class="d-flex flex-column gap-3"></div>
+    </div>
+</div>
+</DefaultLayout>
+ <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+   <script is:inline src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+   <script is:inline src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"></script>
+<script is:inline>
+  // @ts-nocheck
+  document.addEventListener("DOMContentLoaded", function() {
+    window.renderMathInElement(document.body, {
+      delimiters: [
+        { left: "$$", right: "$$", display: true },
+        { left: "$", right: "$", display: false }
+      ]
+    });
+  });
+</script>
+
+<script>
+  // @ts-nocheck
+  const sorular = [
+    {
+      soru: "1'den 20'ye kadar kaç tane asal sayı vardır?",
+      secenekler: ["6", "7", "8", "9"],
+      dogruCevap: 2,
+      cozum: "1'den 20'ye kadar asal sayılar: 2, 3, 5, 7, 11, 13, 17 ve 19. Toplam 8 tane.",
+      konu: "asal"
+    },
+    {
+      soru: "97 sayısı asal mıdır?",
+      secenekler: ["Evet", "Hayır"],
+      dogruCevap: 0,
+      cozum: "√97 ≈ 9.8, bu yüzden 2, 3, 5 ve 7'ye bölünüp bölünmediğine bakarız. Hiçbirine tam bölünmez; 97 asaldır.",
+      konu: "asal"
+    },
+    {
+      soru: "3n - 10, 6n - 13 ve 5n - 13 sayılarının üçü de asal olacak şekilde kaç farklı tam sayı n vardır?",
+      secenekler: ["1", "2", "3", "4"],
+      dogruCevap: 0,
+      cozum: "n = 4 için ifadeler 2, 11 ve 7 olur; üçü de asaldır. n ≥ 5 tek ise 5n - 13 çift ve 2'den büyüktür, dolayısıyla asal değildir. n ≥ 6 çift ise 3n - 10 çift ve 2'den büyüktür, dolayısıyla asal değildir. n < 4 için ilk ifade asal sayı değildir. Bu yüzden yalnızca n = 4 uygundur: cevap 1.",
+      konu: "tek-cift"
+    },
+    {
+      soru: "EBOB(12, 18) kaçtır?",
+      secenekler: ["6", "9", "12", "18"],
+      dogruCevap: 0,
+      cozum: "12 = 2² × 3 ve 18 = 2 × 3². EBOB(12, 18) = 2 × 3 = 6.",
+      konu: "ebob-ekok"
+    },
+    {
+      soru: "17 mod 5 kaçtır?",
+      secenekler: ["2", "3", "4", "5"],
+      dogruCevap: 0,
+      cozum: "17 = 3 × 5 + 2, bu yüzden 17 mod 5 = 2.",
+      konu: "moduler"
+    }
+
+  ];
+
+  sorular.forEach((soru, index) => {
+    const hedef = document.getElementById(`${soru.konu}-pratik`);
+    const kart = document.createElement("div");
+    kart.className = "border rounded p-3";
+
+    const metin = document.createElement("p");
+    metin.textContent = `${index + 1}. ${soru.soru}`;
+    kart.appendChild(metin);
+
+    const secenekler = document.createElement("div");
+    secenekler.className = "d-flex flex-column gap-2";
+    soru.secenekler.forEach((secenek, secim) => {
+      const dugme = document.createElement("button");
+      dugme.type = "button";
+      dugme.textContent = secenek;
+      dugme.className = "btn btn-outline-primary";
+      dugme.onclick = () => {
+        secenekler.querySelectorAll("button").forEach((buton, i) => {
+          buton.className = i === soru.dogruCevap ? "btn btn-success" : "btn btn-outline-primary";
+        });
+        if (secim !== soru.dogruCevap) dugme.className = "btn btn-danger";
+      };
+      secenekler.appendChild(dugme);
+    });
+    kart.appendChild(secenekler);
+
+    const cozumDugmesi = document.createElement("button");
+    cozumDugmesi.type = "button";
+    cozumDugmesi.className = "btn btn-secondary mt-2";
+    cozumDugmesi.textContent = "Çözümü Göster";
+    const cozum = document.createElement("p");
+    cozum.className = "mt-2";
+    cozum.style.display = "none";
+    cozumDugmesi.onclick = () => {
+      cozum.textContent = soru.cozum;
+      cozum.style.display = "block";
+    };
+    kart.append(cozumDugmesi, cozum);
+    hedef.appendChild(kart);
+  });
+</script>

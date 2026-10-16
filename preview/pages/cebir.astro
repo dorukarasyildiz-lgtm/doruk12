@@ -1,0 +1,219 @@
+---
+import DefaultLayout from '@shared/layouts/DefaultLayout.astro'
+
+---
+
+<DefaultLayout title="Dashboard" pageHeader="Cebir" pretitle="Overview" pageMenu="layout.navbar-dark" pageLibs={['apexcharts', 'jsvectormap']} navbarDark>
+<link
+  rel="stylesheet"
+  href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css"
+/>
+<script
+  is:inline
+  src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"
+></script>
+<script
+  is:inline
+  src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"
+></script>
+
+<div class="card">
+  <div class="card-body">
+    <h3 class="card-title">Çarpanlara Ayırma</h3>
+    <p>İki kare farkı:</p>
+    <p>$$x^2-y^2=(x-y)(x+y)$$</p>
+
+    <p>Tam kare özdeşlikleri:</p>
+    <p>$$x^2+2xy+y^2=(x+y)^2$$</p>
+    <p>$$x^2-2xy+y^2=(x-y)^2$$</p>
+
+    <p>Örnek: $$x^2-9=(x-3)(x+3)$$</p>
+  </div>
+</div>
+
+<div class="card mt-3" data-quiz="denklem">
+  <div class="card-body">
+    <h3 class="card-title">Soru Çöz</h3>
+    <p data-soru></p>
+    <div class="d-flex flex-column gap-2" data-secenekler></div>
+    <button type="button" class="btn btn-secondary mt-2" data-cozum-btn>
+      Çözümü Göster
+    </button>
+    <p class="mt-2" data-cozum hidden></p>
+    <button type="button" class="btn btn-primary mt-2" data-sonraki-btn>
+      Sonraki Soru
+    </button>
+  </div>
+</div>
+
+<div class="card mt-3">
+  <div class="card-body">
+    <h3 class="card-title">Küplerin Toplamı ve Farkı</h3>
+
+    <p>Küpler farkı:</p>
+    <p>$$x^3-y^3=(x-y)(x^2+xy+y^2)$$</p>
+
+    <p>Küpler toplamı:</p>
+    <p>$$x^3+y^3=(x+y)(x^2-xy+y^2)$$</p>
+
+    <p>Örnekler:</p>
+    <p>$$x^3-27=(x-3)(x^2+3x+9)$$</p>
+    <p>$$x^3+8=(x+2)(x^2-2x+4)$$</p>
+  </div>
+</div>
+
+<div class="card mt-4" data-quiz="kupkok">
+  <div class="card-body">
+    <h3 class="card-title">Küpkök Konusu: Soru Çöz</h3>
+    <p data-soru></p>
+    <div class="d-flex flex-column gap-2" data-secenekler></div>
+    <button type="button" class="btn btn-secondary mt-2" data-cozum-btn>
+      Çözümü Göster
+    </button>
+    <p class="mt-2" data-cozum hidden></p>
+    <button type="button" class="btn btn-primary mt-2" data-sonraki-btn>
+      Sonraki Soru
+    </button>
+  </div>
+</div>
+</DefaultLayout>
+
+<script>
+  // @ts-nocheck
+  const quizler = {
+    denklem: [
+      {
+        soru: "$$3(x^2 - 4) = 0$$ denkleminin kökleri nelerdir?",
+        secenekler: [
+          "$$x = 2$$ ve $$x = -2$$",
+          "$$x = 4$$ ve $$x = -4$$",
+          "$$x = 0$$",
+          "$$x = 1$$",
+        ],
+        dogruCevap: 0,
+        cozum:
+          "$$3(x^2 - 4) = 0$$. Her iki tarafı 3'e bölersek $$x^2 - 4 = 0$$, yani $$x^2 = 4$$ olur. Kökler $$x = 2$$ ve $$x = -2$$.",
+      },
+      {
+        soru: "$$x^2 + 5x + 6 = 0$$ denkleminin kökleri nelerdir?",
+        secenekler: [
+          "$$x = -2$$ ve $$x = -3$$",
+          "$$x = 2$$ ve $$x = 3$$",
+          "$$x = -1$$ ve $$x = -6$$",
+          "$$x = 1$$ ve $$x = 6$$",
+        ],
+        dogruCevap: 0,
+        cozum:
+          "$$x^2 + 5x + 6 = (x + 2)(x + 3)$$. Buradan $$x = -2$$ veya $$x = -3$$ çıkar.",
+      },
+    ],
+
+    kupkok: [
+      {
+        soru: "$$x^3 - 27$$ ifadesini çarpanlarına ayırın.",
+        secenekler: [
+          "$$(x - 3)(x^2 + 3x + 9)$$",
+          "$$(x + 3)(x^2 - 3x + 9)$$",
+          "$$(x - 3)(x^2 - 3x + 9)$$",
+          "$$(x + 3)(x^2 + 3x + 9)$$",
+        ],
+        dogruCevap: 0,
+        cozum:
+          "$$x^3 - 27 = x^3 - 3^3$$. Küpler farkı kuralına göre $$a^3 - b^3 = (a-b)(a^2+ab+b^2)$$, dolayısıyla sonuç $$(x - 3)(x^2 + 3x + 9)$$ olur.",
+      },
+      {
+        soru: "$$x^3 + 8$$ ifadesini çarpanlarına ayırın.",
+        secenekler: [
+          "$$(x + 2)(x^2 - 2x + 4)$$",
+          "$$(x - 2)(x^2 + 2x + 4)$$",
+          "$$(x + 2)(x^2 + 2x + 4)$$",
+          "$$(x - 2)(x^2 - 2x + 4)$$",
+        ],
+        dogruCevap: 0,
+        cozum:
+          "$$x^3 + 8 = x^3 + 2^3$$. Küpler toplamı kuralına göre $$a^3 + b^3 = (a+b)(a^2-ab+b^2)$$, dolayısıyla sonuç $$(x + 2)(x^2 - 2x + 4)$$ olur.",
+      },
+    ],
+  };
+
+  document.querySelectorAll("[data-quiz]").forEach((kart) => {
+    if (typeof renderMathInElement === "function") {
+  renderMathInElement(document.body, {
+    delimiters: [
+      { left: "$$", right: "$$", display: true },
+      { left: "$", right: "$", display: false },
+    ],
+  });
+}
+    const sorular = quizler[kart.dataset.quiz];
+    if (!sorular?.length) return;
+
+    const soruAlani = kart.querySelector("[data-soru]");
+    const secenekAlani = kart.querySelector("[data-secenekler]");
+    const cozumAlani = kart.querySelector("[data-cozum]");
+    const cozumBtn = kart.querySelector("[data-cozum-btn]");
+    const sonrakiBtn = kart.querySelector("[data-sonraki-btn]");
+
+    let index = 0;
+
+    function matematikGoster() {
+      if (typeof renderMathInElement === "function") {
+        renderMathInElement(kart, {
+          delimiters: [
+            { left: "$$", right: "$$", display: true },
+            { left: "$", right: "$", display: false },
+          ],
+        });
+      }
+    }
+
+    function soruGoster() {
+      const soru = sorular[index];
+      soruAlani.textContent = soru.soru;
+      cozumAlani.textContent = soru.cozum;
+      cozumAlani.hidden = true;
+      secenekAlani.replaceChildren();
+
+      soru.secenekler.forEach((metin, secenekIndex) => {
+        const buton = document.createElement("button");
+        buton.type = "button";
+        buton.textContent = metin;
+        buton.className = "btn btn-outline-primary";
+
+        buton.addEventListener("click", () => {
+          secenekAlani.querySelectorAll("button").forEach((b) => {
+            b.disabled = true;
+          });
+
+          buton.className =
+            secenekIndex === soru.dogruCevap
+              ? "btn btn-success"
+              : "btn btn-danger";
+
+          if (secenekIndex !== soru.dogruCevap) {
+            secenekAlani.children[soru.dogruCevap].className =
+              "btn btn-success";
+          }
+        });
+
+        secenekAlani.appendChild(buton);
+      });
+
+      matematikGoster();
+    }
+
+    cozumBtn.addEventListener("click", () => {
+      cozumAlani.hidden = false;
+      matematikGoster();
+    });
+
+    sonrakiBtn.addEventListener("click", () => {
+      index = (index + 1) % sorular.length;
+      soruGoster();
+    });
+
+    soruGoster();
+  });
+</script>
+
+

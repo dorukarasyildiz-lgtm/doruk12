@@ -1,0 +1,87 @@
+---
+import DefaultLayout from '@shared/layouts/DefaultLayout.astro'
+
+---
+
+<DefaultLayout title="Dashboard" pageHeader="Matematik" pretitle="Overview" pageMenu="layout.navbar-dark" pageLibs={['apexcharts', 'jsvectormap']} navbarDark>
+
+ <div class="card">
+  <div class="card-body">
+    <h3 class="card-title">Bölünebilirlik</h3>
+    <p>Merhaba, bu benim ilk kartım.</p>
+  </div>
+</div>
+
+<section class="card mt-3" aria-labelledby="ai-hint-title">
+  <div class="card-body">
+    <h3 class="card-title" id="ai-hint-title">Yapay Zekâdan Matematik İpucu</h3>
+    <p class="text-secondary">Bir soru yaz; Gemma sana adım adım ipucu versin.</p>
+    <div id="ai-hint-messages" class="border rounded p-3 mb-3" aria-live="polite" aria-label="Sohbet" style="min-height: 5rem; white-space: pre-wrap">
+      <p class="mb-0">Merhaba! Takıldığın matematik sorusunu yaz, birlikte düşünelim.</p>
+    </div>
+    <form id="ai-hint-form">
+      <label class="form-label" for="ai-hint-input">Matematik sorusu</label>
+      <textarea class="form-control" id="ai-hint-input" rows="3" maxlength="2000" placeholder="Örn. x² - 9 ifadesini nasıl çarpanlarına ayırabilirim?" required></textarea>
+      <div class="d-flex align-items-center gap-2 mt-2">
+        <button class="btn btn-primary" id="ai-hint-submit" type="submit">İpucu iste</button>
+        <span class="text-secondary small" id="ai-hint-status" role="status"></span>
+      </div>
+    </form>
+  </div>
+</section>
+</DefaultLayout>
+<script>
+  // @ts-nocheck
+  document.addEventListener("DOMContentLoaded", function() {
+    renderMathInElement(document.body, {
+      delimiters: [
+        { left: "$$", right: "$$", display: true },
+        { left: "$", right: "$", display: false }
+      ]
+    });
+  });
+  const form = document.querySelector("#ai-hint-form");
+  const input = document.querySelector("#ai-hint-input");
+  const messages = document.querySelector("#ai-hint-messages");
+  const status = document.querySelector("#ai-hint-status");
+  const submit = document.querySelector("#ai-hint-submit");
+
+  form?.addEventListener("submit", async (event) => {
+    event.preventDefault();
+
+    const question = input.value.trim();
+    if (!question) return;
+
+    submit.disabled = true;
+    status.textContent = "Gemma düşünüyor...";
+
+    try {
+      const response = await fetch("/api/ai-hint", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ question })
+      });
+
+      const data = await response.json();
+
+      if (!response.ok) {
+        throw new Error(data.error || "Bir hata oluştu.");
+      }
+
+      messages.replaceChildren();
+
+      const answer = document.createElement("p");
+      answer.className = "mb-0";
+      answer.textContent = data.answer;
+      messages.appendChild(answer);
+
+      status.textContent = "Tamamlandı!";
+    } catch (error) {
+      status.textContent = error.message || "Bağlantı hatası!";
+    } finally {
+      submit.disabled = false;
+    }
+  });
+</script>
+
+

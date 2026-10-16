@@ -1,0 +1,24 @@
+---
+import DefaultLayout from '@shared/layouts/DefaultLayout.astro'
+---
+
+<DefaultLayout title="Dashboard" pageHeader="Matematik" pretitle="Overview" pageMenu="layout.navbar-dark" pageLibs={['apexcharts', 'jsvectormap']} navbarDark>
+
+ <div class="card">
+  <div class="card-body">
+    <h3 class="card-title">Bölünebilirlik</h3>
+    <p>Merhaba, bu benim ilk kartım.</p>
+  </div>
+</div>
+</DefaultLayout>
+<script>
+  // @ts-nocheck
+  document.addEventListener("DOMContentLoaded", function() {
+    renderMathInElement(document.body, {
+      delimiters: [
+        { left: "$$", right: "$$", display: true },
+        { left: "$", right: "$", display: false }
+      ]
+    });
+  });
+</script>
