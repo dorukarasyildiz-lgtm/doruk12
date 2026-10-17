@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <p align="center">
 <a href="https://tabler.io">
 <picture>
@@ -213,3 +214,7 @@ This project exists thanks to all the people who contribute.
 Tabler is licensed under the [MIT License](LICENSE).
 
 Third-party libraries shipped in `dist/libs` keep their own licenses. One of them deserves a closer look. ApexCharts hasn't been MIT since version 5. It's dual-licensed now. Organizations under $2M in annual revenue can use it for free under the Community license, and anyone above that threshold pays. Redistribution needs a separate OEM license. Check the [ApexCharts license options](https://apexcharts.com/license/) before you ship charts in a commercial product.
+=======
+# doruk12
+This project uses Tabler’s open-source interface framework; I am developing the mathematical content and the pages specific to this project(Which is currently just about 400 lines of code).
+>>>>>>> d432e01a57a4cc238f3958812e4be1050f794e3d
