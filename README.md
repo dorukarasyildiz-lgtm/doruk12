@@ -8,3 +8,4 @@ This project uses Tabler’s open-source interface framework; I am developing th
 
 How to run it locally:
 npx pnpm dev 
+Also all the major files(matematik.astro, cebir astro etc actually the ones with a math topic name are the major ones) exist in preview/pages
