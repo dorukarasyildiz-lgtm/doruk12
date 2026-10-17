@@ -12,23 +12,7 @@ import DefaultLayout from '@shared/layouts/DefaultLayout.astro'
   </div>
 </div>
 
-<section class="card mt-3" aria-labelledby="ai-hint-title">
-  <div class="card-body">
-    <h3 class="card-title" id="ai-hint-title">Yapay Zekâdan Matematik İpucu</h3>
-    <p class="text-secondary">Bir soru yaz; Gemma sana adım adım ipucu versin.</p>
-    <div id="ai-hint-messages" class="border rounded p-3 mb-3" aria-live="polite" aria-label="Sohbet" style="min-height: 5rem; white-space: pre-wrap">
-      <p class="mb-0">Merhaba! Takıldığın matematik sorusunu yaz, birlikte düşünelim.</p>
-    </div>
-    <form id="ai-hint-form">
-      <label class="form-label" for="ai-hint-input">Matematik sorusu</label>
-      <textarea class="form-control" id="ai-hint-input" rows="3" maxlength="2000" placeholder="Örn. x² - 9 ifadesini nasıl çarpanlarına ayırabilirim?" required></textarea>
-      <div class="d-flex align-items-center gap-2 mt-2">
-        <button class="btn btn-primary" id="ai-hint-submit" type="submit">İpucu iste</button>
-        <span class="text-secondary small" id="ai-hint-status" role="status"></span>
-      </div>
-    </form>
-  </div>
-</section>
+
 </DefaultLayout>
 <script>
   // @ts-nocheck
